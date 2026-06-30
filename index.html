@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘晓源 - 产品助理</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --border: #e8e8e8;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --tag-bg: #f0f4ff;
+            --tag-text: #1e40af;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --max-width: 760px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 24px 40px;
+            text-align: center;
+        }
+        header .name {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        header .title {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        header .meta {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        header .meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        header .meta .dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        /* ── Section ── */
+        section {
+            margin-top: 40px;
+        }
+        section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        section h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-top: 1px;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .card + .card { margin-top: 12px; }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .card-header .role {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .card-header .org {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .card-header .date {
+            font-size: 12px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .card-body {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-body li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+        }
+        .card-body li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        /* ── Tags ── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* ── Link Buttons ── */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .btn-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.15s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .btn-link svg {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+            transition: color 0.15s ease;
+        }
+        .btn-link:hover svg {
+            color: var(--accent);
+        }
+
+        /* ── About ── */
+        .about-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ── Two-col ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 600px) {
+            .two-col { grid-template-columns: 1fr; }
+            .link-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ── Strong/Emphasis in body ── */
+        .highlight {
+            background: linear-gradient(180deg, transparent 60%,  rgba(37,99,235,0.12) 60%);
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+    <div class="name">刘晓源</div>
+    <div class="title">产品助理 · 软件工程</div>
+    <div class="meta">
+        <span><span class="dot"></span> 男 · 20岁</span>
+        <span>📍 北京</span>
+        <span>📧 3394592538@qq.com</span>
+        <span>📱 13393446357</span>
+        <span>🎓 山西农业大学 · 本科在读</span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ═══════════ 求职意向 ═══════════ -->
+<section>
+    <h2>求职意向</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>🎯 职业规划：<strong>产品经理 / 产品助理</strong>，致力于在互联网产品领域深耕发展，从需求分析到方案落地全链路成长。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ 个人优势 ═══════════ -->
+<section>
+    <h2>个人优势</h2>
+    <div class="card">
+        <div class="card-body">
+            <ul>
+                <li><strong>0到1实战经验：</strong>完整独立完成原型图、PRD、用户手册与竞品分析，拥有从设计到方案落地的<span class="highlight">完整闭环思维</span>。</li>
+                <li><strong>Vibe Coding工具：</strong>熟练使用 <strong>Claude Code、Trae</strong> 等AI编程工具完成产品 Demo 与 PRD 编写。</li>
+                <li><strong>产品工具链：</strong>熟练使用 Office、Axure、Visio、墨刀、Xmind 等软件工具。</li>
+                <li><strong>技术理解力：</strong>了解软件生命周期、前后端、数据库等IT技术，可与技术人员<span class="highlight">高效沟通</span>。</li>
+                <li><strong>软实力：</strong>做事认真，擅长沟通，逻辑思维清晰，学习能力强。</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ 产品实习经历 ═══════════ -->
+<section>
+    <h2>产品（实习）经历</h2>
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <div class="role">产品助理</div>
+                <div class="org">雷云文档</div>
+            </div>
+            <div class="date">2026年3月 – 2026年5月</div>
+        </div>
+        <div class="card-body">
+            <p style="margin-bottom:10px;"><strong>产品简介：</strong>独立完成在线协作文档产品的设计，涵盖置顶/取消置顶、收藏/取消收藏、文字等级、文字颜色与背景颜色、登录/注册/退出、文档管理等功能，支持在线编辑、文档导出及用户间交流。</p>
+            <p style="margin-bottom:6px;"><strong>负责模块：</strong></p>
+            <ul>
+                <li>负责文档功能原型图绘制（收藏、置顶、登录等），并设计用户使用时的进程状态与异常状态。</li>
+                <li>独立完成产品 PRD 的书写及各功能流程图的绘制。</li>
+                <li>主导两款竞品（百度文库、钉钉文档）的深度分析，完成用户手册、竞品分析等核心文档编写。</li>
+            </ul>
+            <p style="margin-top:10px; margin-bottom:6px;"><strong>取得成果：</strong></p>
+            <ul>
+                <li>掌握 Axure 工具的使用</li>
+                <li>养成并巩固逻辑思维与结构化思维</li>
+                <li>熟悉 PRD、流程图与原型图的绘制</li>
+                <li>掌握功能从设计到使用入口再到异常状态设计的完整流程</li>
+                <li>熟悉产品的框架设计流程</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ 项目链接 ═══════════ -->
+<section>
+    <h2>项目产出</h2>
+    <div class="link-grid">
+        <a href="https://sdinovation.github.io/prototype/prototype.html" target="_blank" rel="noopener" class="btn-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+            产品 Demo
+        </a>
+        <a href="https://lanhuapp.com/link/#/invite?sid=qx8Uw5Da" target="_blank" rel="noopener" class="btn-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            原型图
+        </a>
+        <a href="https://ccnl9c9ioift.feishu.cn/wiki/Tm0AwROxUizRtikZFapcLBOkn7b" target="_blank" rel="noopener" class="btn-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PRD 文档
+        </a>
+        <a href="https://ccnl9c9ioift.feishu.cn/wiki/GFnawb9u2i0I0vkmBYgcXiT5n3f" target="_blank" rel="noopener" class="btn-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            用户手册
+        </a>
+        <a href="https://ccnl9c9ioift.feishu.cn/wiki/DW07wcNPviALLQkj6InciNQvnKh" target="_blank" rel="noopener" class="btn-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            竞品分析
+        </a>
+    </div>
+</section>
+
+<!-- ═══════════ 教育经历 ═══════════ -->
+<section>
+    <h2>教育经历</h2>
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <div class="role">软件工程 · 本科</div>
+                <div class="org">山西农业大学</div>
+            </div>
+            <div class="date">2024年9月 – 2028年6月</div>
+        </div>
+        <div class="card-body">
+            <p style="margin-bottom:10px;"><strong>核心课程：</strong></p>
+            <div class="tags" style="margin-bottom:14px;">
+                <span class="tag">面向对象程序设计</span>
+                <span class="tag">数据库</span>
+                <span class="tag">数据结构</span>
+                <span class="tag">计算机组成原理</span>
+                <span class="tag">机器学习</span>
+                <span class="tag">操作系统</span>
+                <span class="tag">Web程序设计</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ 在校经历 ═══════════ -->
+<section>
+    <h2>在校经历</h2>
+    <div class="two-col">
+        <div class="card">
+            <div class="card-header">
+                <div class="role">全国大学生渡众车车对抗赛</div>
+            </div>
+            <div class="card-body">
+                <p>担任志愿者，熟悉了 AI 智能车的操作，同时锻炼了团队间的合作能力。</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="role">校融媒体设计部</div>
+            </div>
+            <div class="card-body">
+                <p>为部门设计任务提供创新思维与角度，锻炼跨部门团队协作与创新思维。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ 技能标签 ═══════════ -->
+<section>
+    <h2>技能标签</h2>
+    <div class="tags">
+        <span class="tag">Axure</span>
+        <span class="tag">墨刀</span>
+        <span class="tag">Visio</span>
+        <span class="tag">Xmind</span>
+        <span class="tag">Office</span>
+        <span class="tag">Claude Code</span>
+        <span class="tag">Trae</span>
+        <span class="tag">PRD撰写</span>
+        <span class="tag">原型设计</span>
+        <span class="tag">竞品分析</span>
+        <span class="tag">流程图绘制</span>
+        <span class="tag">用户手册</span>
+        <span class="tag">需求分析</span>
+        <span class="tag">SQL</span>
+        <span class="tag">前后端基础</span>
+    </div>
+</section>
+
+</div>
+
+<footer>
+    &copy; 2026 刘晓源 · Built with ❤️
+</footer>
+
+</body>
+</html>
